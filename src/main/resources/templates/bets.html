@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>List bets</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+<body>
+<table id="games">
+    <thead>
+    <tr>
+        <th onclick="sortArray()"> Time</th>
+        <th> Team</th>
+        <th> Rival</th>
+        <th> Country</th>
+        <th> League</th>
+        <th> Sports</th>
+        <th> Link</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${games.empty}">
+        <td colspan="7"> No bets available</td>
+    </tr>
+    <tr th:each="game : ${games}">
+        <td><span th:text="${#dates.format(game.dateTime, 'dd-MM-yyyy HH:mm')}"> Date </span></td>
+        <td><span th:text="${game.firstTeam}"> Team </span></td>
+        <td><span th:text="${game.secondTeam}"> Rival </span></td>
+        <td><span th:text="${game.country}"> Country </span></td>
+        <td><span th:text="${game.league}"> League </span></td>
+        <td><span th:text="${game.sports}"> Sports </span></td>
+        <td><a th:href="${game.link}"> Link </a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
